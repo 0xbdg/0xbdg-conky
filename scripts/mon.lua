@@ -47,12 +47,16 @@ function conky_main()
     local mem = tonumber(conky_parse("${memperc}")) / 100
 
     -- CPU hex
+    draw_hex_percent(cr, 150, 0, 60, cpu, 0.2, 0.8,1.0,0.9)
     draw_hex_percent(cr, 150, 120, 60, cpu, 0.2, 0.8, 1.0, 0.9)
 
     -- Memory hex
-    draw_hex_percent(cr, 150, 230, 60, mem, 1.0, 0.4, 0.4, 0.9)
+    draw_hex_percent(cr, 150, 240, 60, mem, 1.0, 0.4, 0.4, 0.9)
 
-    draw_hex_percent(cr, 150, 230, 60, mem, 1.0, 0.4, 0.4, 0.9)
+    draw_hex_percent(cr, 50, 180, 60, mem, 2, 0.4, 0.4, 0.9)
+    draw_hex_percent(cr, 250, 180, 60, mem, 2,0.4, 0.4, 0.9)
+    draw_hex_percent(cr, 250, 60, 60, 12, 2,0.4, 0.4, 0.9)
+    draw_hex_percent(cr, 50, 60, 60, 12, 2,0.4,0.4,0.9)
 
     -- Labels
     cairo_select_font_face(cr, "Sans", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD)
