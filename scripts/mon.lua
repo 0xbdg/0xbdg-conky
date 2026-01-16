@@ -1,7 +1,6 @@
 require('cairo')
 require('cairo_xlib')
 
--- draw hexagon
 function draw_hexagon(cr, cx, cy, size)
     local angle = math.pi / 3
     cairo_move_to(cr, cx + size, cy)
@@ -16,7 +15,6 @@ function draw_hexagon(cr, cx, cy, size)
     cairo_close_path(cr)
 end
 
--- draw filled hexagon by percentage
 function draw_hex_percent(cr, cx, cy, size, percent, r, g, b, a)
     cairo_set_source_rgba(cr, r, g, b, a)
     cairo_set_line_width(cr, 6)
@@ -41,24 +39,17 @@ function conky_main()
         conky_window.height
     )
     local cr = cairo_create(cs)
-
-    -- CPU & RAM values
     local cpu = tonumber(conky_parse("${cpu}")) / 100
     local mem = tonumber(conky_parse("${memperc}")) / 100
 
-    -- CPU hex
     draw_hex_percent(cr, 150, 0, 60, cpu, 0.2, 0.8,1.0,0.9)
     draw_hex_percent(cr, 150, 120, 60, cpu, 0.2, 0.8, 1.0, 0.9)
-
-    -- Memory hex
     draw_hex_percent(cr, 150, 240, 60, mem, 1.0, 0.4, 0.4, 0.9)
-
     draw_hex_percent(cr, 50, 180, 60, mem, 2, 0.4, 0.4, 0.9)
     draw_hex_percent(cr, 250, 180, 60, mem, 2,0.4, 0.4, 0.9)
     draw_hex_percent(cr, 250, 60, 60, 12, 2,0.4, 0.4, 0.9)
     draw_hex_percent(cr, 50, 60, 60, 12, 2,0.4,0.4,0.9)
 
-    -- Labels
     cairo_select_font_face(cr, "Sans", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD)
     cairo_set_font_size(cr, 14)
 
